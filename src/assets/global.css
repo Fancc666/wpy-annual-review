@@ -24,3 +24,24 @@
 .p10{
   padding: 10px;
 }
+@keyframes slidein {
+  from {
+    position: relative;
+    top: 10px;
+    opacity: 0;
+  }
+  to {
+    position: relative;
+    top: 0;
+    margin-top: 0;
+    opacity: 1;
+  }
+}
+.box{
+  opacity: 0;
+  user-select: none;
+  -moz-user-select: none;
+}
+.an-slidein{
+  animation: slidein .5s linear forwards;
+}
