@@ -1,6 +1,7 @@
 <template>
-  <h1>You did it!</h1>
-  <RouterView></RouterView>
+  <div class="container">
+    <RouterView></RouterView>
+  </div>
 </template>
 
 <script setup lang="ts"></script>

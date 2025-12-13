@@ -1,7 +1,6 @@
 import axios from 'axios'
 import type { AxiosInstance, AxiosError, AxiosRequestConfig } from 'axios'
 import { useUserStore } from '@/stores/user'
-import router from '@/router'
 import type { ResponseData } from './interface'
 
 // axios.defaults.withCredentials = true;
@@ -22,29 +21,13 @@ http.interceptors.request.use(config => {
 http.interceptors.response.use(
   res => {
     if (res.data.code === 401) {
-      const user = useUserStore();
-      user.logout();
-      router.replace(`/login?redirect=${encodeURIComponent(router.currentRoute.value.fullPath)}`);
+      console.log("登录失效");
       return Promise.reject(res.data.msg);
     }
     return res.data;
   },
   (err: AxiosError) => {
-    if (err.response?.status === 401) {
-      const user = useUserStore();
-      user.logout();
-      router.replace(`/login?redirect=${encodeURIComponent(router.currentRoute.value.fullPath)}`);
-    }
-    if (err.response?.status === 500) {
-      alert("登录失效或api错误，请尝试重新登陆");
-    }
-    if (err.response?.status === 400) {
-      //
-      alert('接口错误400 Bad Request');
-    }
-    if (err.code === "ECONNABORTED"){
-      // alert("请求超时");
-    }
+    console.error(err);
     return Promise.reject(err);
   }
 );

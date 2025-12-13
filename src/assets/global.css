@@ -1,0 +1,26 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0;
+  background-color: #f6f6f6;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+::-webkit-scrollbar{
+  display: none;
+}
+.page{
+  height: 100vh;
+  flex: 0 0 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+.p10{
+  padding: 10px;
+}

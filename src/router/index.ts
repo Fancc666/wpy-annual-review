@@ -1,19 +1,17 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { useUserStore } from '@/stores/user'
 
 const routes: RouteRecordRaw[] = [
-  { path: '/', redirect: '/home' },
-  { path: '/login', component: () => import('@/views/HoldPage.vue') },
+  { path: '/', redirect: '/main' },
   {
-    path: '/home',
+    path: '/main',
     component: () => import('@/views/HoldPage.vue'),
     meta: { requiresAuth: true }
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: ()=> import('@/views/HoldPage.vue')
+    component: ()=> import('@/views/ErrorPage.vue')
   }
 ]
 
@@ -22,18 +20,21 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  const user = useUserStore();
-  if (to.meta?.requiresAuth && !user.token) {
-    next('/login');
-    return;
-  }
-  if (to.meta?.permission === 'ADMIN' && user.permission !== 'ADMIN') {
-    alert("无权限");
-    next("/home");
-    return;
-  }
-  next();
-})
+/**
+ * 本项目暂时不需要权限鉴定
+ */
+// router.beforeEach((to, from, next) => {
+//   const user = useUserStore();
+//   if (to.meta?.requiresAuth && !user.token) {
+//     next('/login');
+//     return;
+//   }
+//   if (to.meta?.permission === 'ADMIN' && user.permission !== 'ADMIN') {
+//     alert("无权限");
+//     next("/home");
+//     return;
+//   }
+//   next();
+// })
 
 export default router
