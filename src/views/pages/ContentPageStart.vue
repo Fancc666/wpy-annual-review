@@ -1,15 +1,40 @@
 <template>
   <div class="page" ref="page">
-    <span class="big text box">
-      <slot></slot>
-    </span>
-    <span class="text box">hello world <slot></slot></span>
-    <span class="text box">hello world <slot></slot></span>
-    <span class="text box">hello world <slot></slot></span>
-    <span class="text box">hello world <slot></slot></span>
-    <span class="text box">hello world <slot></slot></span>
+    <h2 class="white">
+      <span>用户名！</span>
+      <span>请查收你的微北洋年度报告</span>
+    </h2>
+    <p class="white text">让小微来陪你一起看看吧！</p>
+    <p class="white bottom">向下滑动开启年度报告~</p>
   </div>
 </template>
+
+<style scoped>
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #e2c6ff 100%);
+  position: relative;
+}
+.big {
+  font-size: 2em;
+}
+h2{
+  margin-top: 50px;
+}
+h2 span{
+  display: inline-block;
+}
+.text{
+  position: absolute;
+  top: 50%;
+}
+.bottom{
+  position: absolute;
+  bottom: 50px;
+}
+</style>
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue';
@@ -43,22 +68,3 @@ watch(() => props.activePage, () => {
   applyAnimate();
 });
 </script>
-
-<style scoped>
-.page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  ;
-}
-
-.big {
-  font-size: 2em;
-}
-
-.text {
-  color: white;
-}
-</style>

@@ -1,23 +1,22 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import instance from "@/utils/request";
 
 export const useUserStore = defineStore(
   'user',
   () => {
     const token = ref('');
     const username = ref('');
-    const loadState = ref(false);
+    const permission = ref('');
 
-    if (loadState.value){
-      return;
+    const getApiData = async (): Promise<boolean> => {
+      const u = new URL(window.location.href);
+      const params = new URLSearchParams(u.search);
+      console.log(params.get("token"));
+      if (!params.get("token")) return false;
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      return true;
     }
 
-    // 加载后端数据
-    function getUserData(){
-
-    }
-
-    return {token, username, getUserData};
-  }// 重新请求，不需要持久化
+    return { token, username, permission, getApiData };
+  }
 )
