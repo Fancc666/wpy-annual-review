@@ -18,6 +18,14 @@ export default defineConfig({
   base: "/review/",
   server: {
     host: "0.0.0.0",
-    port: 5173
+    port: 5173,
+    proxy: {
+      '/api': {
+        target: 'http://main.vastsea.cc:48081/annual-summary/get-summary',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+
+      }
+    }
   }
 })

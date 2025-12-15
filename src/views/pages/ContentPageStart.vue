@@ -1,7 +1,7 @@
 <template>
   <div class="page" ref="page">
     <h2 class="white">
-      <span>用户名！</span>
+      <span>{{ user.nickname }}！</span>
       <span>请查收你的微北洋年度报告</span>
     </h2>
     <p class="white text">让小微来陪你一起看看吧！</p>
@@ -37,7 +37,13 @@ h2 span{
 </style>
 
 <script lang="ts" setup>
+import { useUserStore } from '@/stores/user';
+import { storeToRefs } from 'pinia';
 import { ref, watch } from 'vue';
+
+const userStore = useUserStore();
+const user = storeToRefs(userStore).userData.value!;
+
 const page = ref<HTMLElement>();
 const timers: number[] = [];
 function clearAnimate() {

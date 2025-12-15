@@ -47,4 +47,4 @@ const instance = {
   },
 };
 
-export default instance;
+export { instance, http };
