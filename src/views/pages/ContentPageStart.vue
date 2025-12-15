@@ -17,30 +17,34 @@
   background: linear-gradient(135deg, #667eea 0%, #e2c6ff 100%);
   position: relative;
 }
+
 .big {
   font-size: 2em;
 }
-h2{
+
+h2 {
   margin-top: 50px;
 }
-h2 span{
+
+h2 span {
   display: inline-block;
 }
-.text{
+
+.text {
   position: absolute;
   top: 50%;
 }
-.bottom{
+
+.bottom {
   position: absolute;
   bottom: 50px;
 }
 </style>
 
 <script lang="ts" setup>
+import { ref, watch } from 'vue';
 import { useUserStore } from '@/stores/user';
 import { storeToRefs } from 'pinia';
-import { ref, watch } from 'vue';
-
 const userStore = useUserStore();
 const user = storeToRefs(userStore).userData.value!;
 

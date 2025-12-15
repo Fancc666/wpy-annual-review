@@ -66,3 +66,9 @@ i{
   font-size: .9em;
   text-decoration: underline;
 }
+.data{
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  padding: 0 5px;
+}

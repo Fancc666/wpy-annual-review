@@ -19,7 +19,7 @@ export const useUserStore = defineStore(
       if (!token) return false;
       // debuging
       try{
-        const apiResponse = await instance.get(`http://127.0.0.1:5173/api`, {
+        const apiResponse = await instance.get(`/api`, {
           params: {
             userId: token
           }

@@ -1,14 +1,16 @@
 <template>
   <div class="page" ref="page">
     <div class="group">
-      <p class="box">2025年，是你使用微北洋的第x年</p>
-      <p class="box">截止2025/12/20，你已经与微北洋相伴了xx个日夜</p>
+      <p class="box">2025年，是你使用微北洋的第<span class="data">{{ user.yearsOfService }}</span>年</p>
+      <p class="box">截止2025年12月20日，你已经与微北洋相伴了<span class="data">{{ user.daysOfService }}</span>个日夜</p>
+      <p class="box"><i>北洋之大，一手掌握</i></p>
+    </div>
+    <div class="ps">
+      <span>点击微北娘试试看</span>
     </div>
     <div class="rd">
-      <div class="dialogue box">
-        小微很高兴在今年认识你呢！不知道这里的帖子有没有帮到你呢？<br />小微记得，工作室有位哲人说过：“每天湖底看一看，新登更比老登夯”……
-      </div>
-      <img src="@/assets/chr-test.jpg" class="wbn" />
+      <DialogueBox :dialogues="dialogues" :show-index="showDialogueIndex"></DialogueBox>
+      <img src="@/assets/chr-test.jpg" class="wbn" @click="seqDialogue()" />
     </div>
   </div>
 </template>
@@ -21,45 +23,46 @@
   background: linear-gradient(135deg, #667eea 0%, #e2c6ff 100%);
   position: relative;
 }
-.group{
-  padding: 70px 0;
+
+.group {
+  padding: 50px 0;
   margin: 0 auto;
 }
-.group > *{
+
+.group>* {
   margin-bottom: 40px;
 }
-.rd{
+
+.rd {
   width: 85%;
   display: flex;
   margin: 0 12px 0 auto;
   gap: 10px
 }
-.wbn{
+
+.wbn {
   width: 40%;
 }
-.dialogue{
-  background-color: #f6f6f6;
-  padding: 8px;
-  box-sizing: border-box;
-  /* border: 1px solid black; */
-  border-radius: 10px;
-  height: fit-content;
+
+.ps {
+  color: white;
+  font-size: .8em;
+  text-align: right;
+  padding: 5px 0;
 }
-.dialogue::after{
-    content: '';
-    width: 0;
-    height: 0;
-    border-left: 12px solid #f6f6f6;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    position: absolute;
-    right: -9px;
-    top: 20%;
+
+.ps span {
+  margin-right: 10px;
 }
 </style>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import DialogueBox from '../components/DialogueBox.vue';
+import { useUserStore } from '@/stores/user';
+import { storeToRefs } from 'pinia';
+const userStore = useUserStore();
+const user = storeToRefs(userStore).userData.value!;
+import { reactive, ref, watch } from 'vue';
 const page = ref<HTMLElement>();
 const timers: number[] = [];
 function clearAnimate() {
@@ -89,4 +92,47 @@ watch(() => props.activePage, () => {
   console.log("play animation:", props.activePage);
   applyAnimate();
 });
+
+// for dialogue
+const dialogues = reactive<string[]>([]);
+function analyseDialogue() {
+  const time1 = user.registerDate;
+  const time2Standard = "2022-03-01T00:00:00+08:00";
+  const date1 = new Date(time1);
+  const date2 = new Date(time2Standard);
+
+  if (date1 < date2) {
+    dialogues.splice(0, 0, ...[
+      "哇……看来小微要叫你前辈了(￣▽￣)／",
+      "(￣▽￣)／"
+    ]);
+    return;
+  }
+  if (user.tenureLevel === "NEW_COMER") {
+    dialogues.splice(0, 0, ...[
+      "小微很高兴在今年认识你呢！不知道这里的帖子有没有帮到你呢？",
+      "小微记得，工作室有位哲人说过：“每天湖底看一看，新登更比老登夯”……"
+    ]);
+    return;
+  }
+  if (user.tenureLevel === "CASUAL") {
+    dialogues.splice(0, 0, ...[
+      "小微也是算是看着你长大的吧！你刚来的时候我还给你指过路呢~",
+      "怎么样，现在还能记得和小微刚认识的时候是什么感受吗？"
+    ]);
+    return;
+  }
+  if (user.tenureLevel === "VETERAN") {
+    dialogues.splice(0, 0, ...[
+      "咱俩都认识多长时间了，小微就不和你整这些有的没的了，最近过得怎么样？",
+      "哇，是老资历！还记得那些神贴嘛？忘了的话就去翻翻精华吧~"
+    ]);
+    return;
+  }
+}
+analyseDialogue();
+const showDialogueIndex = ref(0);
+function seqDialogue() {
+  showDialogueIndex.value = (showDialogueIndex.value + 1) % dialogues.length;
+}
 </script>
