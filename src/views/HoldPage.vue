@@ -9,8 +9,8 @@
     <ContentPageSchool :page-id="5" :active-page="activePage"></ContentPageSchool>
     <ContentPageHot :page-id="6" :active-page="activePage" v-show="p4show"></ContentPageHot>
     <ContentPageInfluence :page-id="7" :active-page="activePage"></ContentPageInfluence>
-    <!-- ContentPageSummary -->
-    <ContentPageEnd :page-id="8" :active-page="activePage"></ContentPageEnd>
+    <ContentPageSummary :page-id="8" :active-page="activePage"></ContentPageSummary>
+    <ContentPageEnd :page-id="9" :active-page="activePage"></ContentPageEnd>
   </div>
 </template>
 
@@ -27,6 +27,7 @@ import ContentPageContent from './pages/ContentPageContent.vue';
 import ContentPageHot from './pages/ContentPageHot.vue';
 import ContentPageInfluence from './pages/ContentPageInfluence.vue';
 import ContentPageSchool from './pages/ContentPageSchool.vue';
+import ContentPageSummary from './pages/ContentPageSummary.vue';
 import ContentPageEnd from './pages/ContentPageEnd.vue';
 
 import { useUserStore } from '@/stores/user';
@@ -51,12 +52,12 @@ function initPageWatcher() {
     entries.forEach(entry => {
       const idx = Array.from(pages).indexOf(entry.target as HTMLElement);
       if (entry.isIntersecting && idx !== -1) {
-        activePage.value = idx;     // 通知全世界
+        activePage.value = idx;     // 通知所有组件
       }
     });
   }, {
     root: scroller,      // 关键：滚动的元素
-    threshold: 0.9       // 60% 面积出现就算“进入”
+    threshold: 0.9       // 90% 面积出现就算“进入”
   });
 
   // 2. 注册所有页

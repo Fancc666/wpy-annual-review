@@ -1,12 +1,19 @@
 <template>
   <div class="page" ref="page">
+    <h2 class="white">
+      <span>年度汇总</span>
+    </h2>
     <div class="group">
-      <p class="box">你在校务专区向xx部门反馈了xx个问题，总计建言<span class="data">{{ user.feedbackCount }}</span>次</p>
-      <p class="box"><i>民主是互联网的天然属性</i></p>
+      <p class="box" style="font-size: 1.2em;text-align: center;">{{ user.nickname }}的2025微北洋年度报告</p>
+      <p class="box">截止2025/12/20你已经使用了<span class="data">{{ user.daysOfService }}</span>天微北洋</p>
+      <p class="box">总计发了<span class="data">{{ user.totalPosts }}</span>条帖子，<span class="data">{{ user.totalFloors }}</span>个评论</p>
+      <p class="box">其中有<span class="data">{{ user.feedbackCount }}</span>条校务反馈</p>
+      <p class="box">你获赞最多的帖子是<span class="data">【{{ user.mostLikedPostTitle }}】#MP{{ user.mostLikedPostId }}</span></p>
+      <p class="box">所有帖子评论共获赞<span class="data">{{ user.totalLikesReceived }}</span>个</p>
+      <p class="box">小微帮你整理好了哦，快去截图分享吧！</p>
     </div>
     <div class="rd">
-      <img src="@/assets/chr-test.jpg" class="wbn" @click="seqDialogue()" />
-      <DialogueBox :dialogues="dialogues" :show-index="showDialogueIndex" :direction="1"></DialogueBox>
+      <img src="@/assets/chr-test.jpg" class="wbn" />
     </div>
   </div>
 </template>
@@ -20,28 +27,38 @@
   position: relative;
 }
 .group{
-  padding: 70px 0;
+  padding: 15px 0;
   margin: 0 auto;
+  font-size: 1em;
 }
 .group > *{
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 .rd{
-  width: 85%;
-  display: flex;
-  margin: 0 auto 0 12px;
-  gap: 10px
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+  width: fit-content;
+  z-index: 0;
+  opacity: .5;
 }
 .wbn{
-  width: 40%;
+  /* width: 40%; */
+  width: 200px;
+}
+h2{
+  margin-top: 20px;
+}
+h2 span{
+  display: block;
+  text-align: center;
 }
 </style>
 
 <script lang="ts" setup>
-import { reactive, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 import { useUserStore } from '@/stores/user';
 import { storeToRefs } from 'pinia';
-import DialogueBox from '../components/DialogueBox.vue';
 const userStore = useUserStore();
 const user = storeToRefs(userStore).userData.value!;
 
@@ -74,13 +91,4 @@ watch(() => props.activePage, () => {
   console.log("play animation:", props.activePage);
   applyAnimate();
 });
-
-// for dialogue
-const dialogues = reactive<string[]>([
-  "小微感谢每一个为校园建设建言献策的同学！"
-]);
-const showDialogueIndex = ref(0);
-function seqDialogue() {
-  showDialogueIndex.value = (showDialogueIndex.value + 1) % dialogues.length;
-}
 </script>
