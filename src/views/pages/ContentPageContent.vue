@@ -2,7 +2,7 @@
   <div class="page" ref="page">
     <div class="group">
       <p class="box">今年你一共发了<span class="data">{{ user.totalPosts }}</span>个帖子 <span class="data">{{ user.totalFloors }}</span>条评论</p>
-      <p class="box">其中有<span class="data">{{ user.feedbackCount }}</span>条校务反馈</p>
+      <!-- <p class="box">其中有<span class="data">{{ user.feedbackCount }}</span>条校务反馈</p> -->
       <p class="box"><i>我们需要交流，正如我们需要水</i></p>
     </div>
     <div class="ps">

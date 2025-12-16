@@ -2,13 +2,15 @@
   <div class="pageContainer">
     <!-- <ContentPage0 :page-id="0" :active-page="activePage">0</ContentPage0> -->
     <ContentPageStart :page-id="0" :active-page="activePage"></ContentPageStart>
-    <ContentPage1 :page-id="1" :active-page="activePage"></ContentPage1>
-    <ContentPage2 :page-id="2" :active-page="activePage" v-show="user.mostActivePeriod !== 'NONE'"></ContentPage2>
-    <ContentPage3 :page-id="3" :active-page="activePage"></ContentPage3>
-    <ContentPage4 :page-id="4" :active-page="activePage" v-show="p4show"></ContentPage4>
-    <ContentPage5 :page-id="5" :active-page="activePage"></ContentPage5>
-    <ContentPage6 :page-id="6" :active-page="activePage"></ContentPage6>
-    <ContentPageEnd :page-id="7" :active-page="activePage"></ContentPageEnd>
+    <ContentPageTenure :page-id="1" :active-page="activePage"></ContentPageTenure>
+    <ContentPageView :page-id="2" :active-page="activePage"></ContentPageView>
+    <ContentPageTime :page-id="3" :active-page="activePage" v-show="user.mostActivePeriod !== 'NONE'"></ContentPageTime>
+    <ContentPageContent :page-id="4" :active-page="activePage"></ContentPageContent>
+    <ContentPageSchool :page-id="5" :active-page="activePage"></ContentPageSchool>
+    <ContentPageHot :page-id="6" :active-page="activePage" v-show="p4show"></ContentPageHot>
+    <ContentPageInfluence :page-id="7" :active-page="activePage"></ContentPageInfluence>
+    <!-- ContentPageSummary -->
+    <ContentPageEnd :page-id="8" :active-page="activePage"></ContentPageEnd>
   </div>
 </template>
 
@@ -18,12 +20,13 @@ import { onMounted, ref } from 'vue';
 
 // views
 import ContentPageStart from './pages/ContentPageStart.vue';
-import ContentPage1 from './pages/ContentPage1.vue';
-import ContentPage2 from './pages/ContentPage2.vue';
-import ContentPage3 from './pages/ContentPage3.vue';
-import ContentPage4 from './pages/ContentPage4.vue';
-import ContentPage5 from './pages/ContentPage5.vue';
-import ContentPage6 from './pages/ContentPage6.vue';
+import ContentPageTenure from './pages/ContentPageTenure.vue';
+import ContentPageView from './pages/ContentPageView.vue';
+import ContentPageTime from './pages/ContentPageTime.vue';
+import ContentPageContent from './pages/ContentPageContent.vue';
+import ContentPageHot from './pages/ContentPageHot.vue';
+import ContentPageInfluence from './pages/ContentPageInfluence.vue';
+import ContentPageSchool from './pages/ContentPageSchool.vue';
 import ContentPageEnd from './pages/ContentPageEnd.vue';
 
 import { useUserStore } from '@/stores/user';

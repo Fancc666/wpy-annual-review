@@ -4,9 +4,10 @@
       <span>写在最后</span>
     </h2>
     <div class="texts">
-      <p class="box"><b>天外天</b>感谢每一位用户的支持与陪伴！</p>
+      <p class="box"><span class="data">天外天</span>感谢每一位用户的支持与陪伴！</p>
       <p class="box">让我们2026继续携手同行！</p>
       <p class="box">小微和工作室全体成员祝大家新年快乐！</p>
+      <img src="@/assets/chr-test.jpg" class="wbn box" />
     </div>
     <div class="bottom white">
       <p class="box">
@@ -44,6 +45,11 @@ h2 span{
 .bottom{
   position: absolute;
   bottom: 50px;
+}
+.wbn{
+  margin: 0 auto;
+  display: block;
+  max-height: 248px;
 }
 </style>
 

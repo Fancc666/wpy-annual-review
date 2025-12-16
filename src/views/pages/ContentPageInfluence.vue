@@ -1,15 +1,16 @@
 <template>
   <div class="page" ref="page">
     <div class="group">
-      <p class="box">2025年</p>
-      <p class="box">你一共浏览了xx个帖子</p>
-      <p class="box">收藏了xx个帖子</p>
+      <p class="box">2025年，你一共收到了<span class="data">{{ user.totalLikesReceived }}</span>个赞</p>
+      <p class="box">帖子<span class="data">{{ user.totalPostLikesReceived }}</span>赞 评论<span class="data">{{ user.totalFloorLikesReceived }}</span>赞</p>
+      <p class="box"><i>点赞是抽象的数字，喜爱却是是具体的感情</i></p>
+    </div>
+    <div class="ps">
+      <span>点击微北娘试试看</span>
     </div>
     <div class="rd">
-      <div class="dialogue box">
-        要记得把精彩的帖子推荐给小微呀
-      </div>
-      <img src="@/assets/chr-test.jpg" class="wbn" />
+      <DialogueBox :dialogues="dialogues" :show-index="showDialogueIndex"></DialogueBox>
+      <img src="@/assets/chr-test.jpg" class="wbn" @click="seqDialogue()" />
     </div>
   </div>
 </template>
@@ -57,10 +58,25 @@
     right: -9px;
     top: 20%;
 }
+.ps {
+  color: white;
+  font-size: .8em;
+  text-align: right;
+  padding: 5px 0;
+}
+
+.ps span {
+  margin-right: 10px;
+}
 </style>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { reactive, ref, watch } from 'vue';
+import { useUserStore } from '@/stores/user';
+import { storeToRefs } from 'pinia';
+import DialogueBox from '../components/DialogueBox.vue';
+const userStore = useUserStore();
+const user = storeToRefs(userStore).userData.value!;
 const page = ref<HTMLElement>();
 const timers: number[] = [];
 function clearAnimate() {
@@ -90,4 +106,14 @@ watch(() => props.activePage, () => {
   console.log("play animation:", props.activePage);
   applyAnimate();
 });
+
+// for dialogue
+const dialogues = reactive<string[]>([
+  "不要吝惜手里的赞哦",
+  "你知道吗？小微习惯给自己点一个赞(´,,•ω•,,)♡"
+]);
+const showDialogueIndex = ref(0);
+function seqDialogue() {
+  showDialogueIndex.value = (showDialogueIndex.value + 1) % dialogues.length;
+}
 </script>
