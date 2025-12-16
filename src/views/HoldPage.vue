@@ -3,9 +3,9 @@
     <!-- <ContentPage0 :page-id="0" :active-page="activePage">0</ContentPage0> -->
     <ContentPageStart :page-id="0" :active-page="activePage"></ContentPageStart>
     <ContentPage1 :page-id="1" :active-page="activePage"></ContentPage1>
-    <ContentPage2 :page-id="2" :active-page="activePage"></ContentPage2>
+    <ContentPage2 :page-id="2" :active-page="activePage" v-show="user.mostActivePeriod !== 'NONE'"></ContentPage2>
     <ContentPage3 :page-id="3" :active-page="activePage"></ContentPage3>
-    <ContentPage4 :page-id="4" :active-page="activePage"></ContentPage4>
+    <ContentPage4 :page-id="4" :active-page="activePage" v-show="p4show"></ContentPage4>
     <ContentPage5 :page-id="5" :active-page="activePage"></ContentPage5>
     <ContentPage6 :page-id="6" :active-page="activePage"></ContentPage6>
     <ContentPageEnd :page-id="7" :active-page="activePage"></ContentPageEnd>
@@ -25,6 +25,16 @@ import ContentPage4 from './pages/ContentPage4.vue';
 import ContentPage5 from './pages/ContentPage5.vue';
 import ContentPage6 from './pages/ContentPage6.vue';
 import ContentPageEnd from './pages/ContentPageEnd.vue';
+
+import { useUserStore } from '@/stores/user';
+import { storeToRefs } from 'pinia';
+const userStore = useUserStore();
+const user = storeToRefs(userStore).userData.value!;
+
+const p4show = ref(true);
+if (user.mostLikedPostId === null || user.mostLikedFloorId === null){
+  p4show.value = false;
+}
 
 const activePage = ref(-1);
 

@@ -1,15 +1,16 @@
 <template>
   <div class="page" ref="page">
     <div class="group">
-      <p class="box">今年你一共发了x个帖子 y条评论</p>
-      <p class="box">其中有x条校务反馈</p>
+      <p class="box">今年你一共发了<span class="data">{{ user.totalPosts }}</span>个帖子 <span class="data">{{ user.totalFloors }}</span>条评论</p>
+      <p class="box">其中有<span class="data">{{ user.feedbackCount }}</span>条校务反馈</p>
       <p class="box"><i>我们需要交流，正如我们需要水</i></p>
     </div>
+    <div class="ps">
+      <span>点击微北娘试试看</span>
+    </div>
     <div class="rd">
-      <div class="dialogue box">
-        原来不止威尼斯湖底有潜水怪，青年湖底也有<br />偶尔也出来冒冒泡嘛，小微很期待你的发言哦～
-      </div>
-      <img src="@/assets/chr-test.jpg" class="wbn" />
+      <DialogueBox :dialogues="dialogues" :show-index="showDialogueIndex"></DialogueBox>
+      <img src="@/assets/chr-test.jpg" class="wbn" @click="seqDialogue()" />
     </div>
   </div>
 </template>
@@ -38,29 +39,24 @@
 .wbn{
   width: 40%;
 }
-.dialogue{
-  background-color: #f6f6f6;
-  padding: 8px;
-  box-sizing: border-box;
-  /* border: 1px solid black; */
-  border-radius: 10px;
-  height: fit-content;
+.ps {
+  color: white;
+  font-size: .8em;
+  text-align: right;
+  padding: 5px 0;
 }
-.dialogue::after{
-    content: '';
-    width: 0;
-    height: 0;
-    border-left: 12px solid #f6f6f6;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    position: absolute;
-    right: -9px;
-    top: 20%;
+.ps span {
+  margin-right: 10px;
 }
 </style>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { reactive, ref, watch } from 'vue';
+import { useUserStore } from '@/stores/user';
+import { storeToRefs } from 'pinia';
+import DialogueBox from '../components/DialogueBox.vue';
+const userStore = useUserStore();
+const user = storeToRefs(userStore).userData.value!;
 const page = ref<HTMLElement>();
 const timers: number[] = [];
 function clearAnimate() {
@@ -90,4 +86,35 @@ watch(() => props.activePage, () => {
   console.log("play animation:", props.activePage);
   applyAnimate();
 });
+
+// for dialogue
+const dialogues = reactive<string[]>([]);
+function analyseDialogue() {
+  if (user.postRankLevel === "LOW") {
+    dialogues.splice(0, 0, ...[
+      "原来不止威尼斯湖底有潜水怪，青年湖底也有",
+      "偶尔也出来冒冒泡嘛，小微很期待你的发言哦～"
+    ]);
+    return;
+  }
+  if (user.postRankLevel === "MEDIUM") {
+    dialogues.splice(0, 0, ...[
+      "我们总是在与其他人交流，因为这是我们的天性",
+      "趁想法还年轻，去表达吧！别让它被时间磨损了"
+    ]);
+    return;
+  }
+  if (user.postRankLevel === "HIGH") {
+    dialogues.splice(0, 0, ...[
+      "青年湖底的一汪绿水，竟然能养出此等龙王",
+      "没有你的话，小微肯定会无聊呢～"
+    ]);
+    return;
+  }
+}
+analyseDialogue();
+const showDialogueIndex = ref(0);
+function seqDialogue() {
+  showDialogueIndex.value = (showDialogueIndex.value + 1) % dialogues.length;
+}
 </script>

@@ -1,15 +1,13 @@
 <template>
   <div class="page" ref="page">
     <div class="group">
-      <p class="box">你获赞最多的帖子是#MPxxxxx，《xxx》</p>
-      <p class="box">获赞最多的评论是“xxx”</p>
-      <p class="box"><i>无论使用哪种媒介，总是作者最为作品而自豪</i></p>
+      <p class="box">你获赞最多的帖子是<span class="data">#MP{{ user.mostLikedPostId }}，《{{ user.mostLikedPostTitle }}》</span></p>
+      <p class="box">获赞最多的评论是<span class="data">“{{ user.mostLikedFloorContent }}”</span></p>
+      <p class="box"><i>可以为点赞数而激动，但不要被它激怒</i></p>
     </div>
     <div class="rd">
-      <div class="dialogue box">
-        确实很精彩呢，小微也给你点赞~
-      </div>
-      <img src="@/assets/chr-test.jpg" class="wbn" />
+      <img src="@/assets/chr-test.jpg" class="wbn" @click="seqDialogue()" />
+      <DialogueBox :dialogues="dialogues" :show-index="showDialogueIndex" :direction="1"></DialogueBox>
     </div>
   </div>
 </template>
@@ -23,7 +21,7 @@
   position: relative;
 }
 .group{
-  padding: 70px 0;
+  padding: 50px 0;
   margin: 0 auto;
 }
 .group > *{
@@ -32,35 +30,21 @@
 .rd{
   width: 85%;
   display: flex;
-  margin: 0 12px 0 auto;
+  margin: 0 auto 0 12px;
   gap: 10px
 }
 .wbn{
   width: 40%;
 }
-.dialogue{
-  background-color: #f6f6f6;
-  padding: 8px;
-  box-sizing: border-box;
-  /* border: 1px solid black; */
-  border-radius: 10px;
-  height: fit-content;
-}
-.dialogue::after{
-    content: '';
-    width: 0;
-    height: 0;
-    border-left: 12px solid #f6f6f6;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    position: absolute;
-    right: -9px;
-    top: 20%;
-}
 </style>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { reactive, ref, watch } from 'vue';
+import { storeToRefs } from 'pinia';
+import DialogueBox from '../components/DialogueBox.vue';
+import { useUserStore } from '@/stores/user';
+const userStore = useUserStore();
+const user = storeToRefs(userStore).userData.value!;
 const page = ref<HTMLElement>();
 const timers: number[] = [];
 function clearAnimate() {
@@ -90,4 +74,11 @@ watch(() => props.activePage, () => {
   console.log("play animation:", props.activePage);
   applyAnimate();
 });
+
+// for dialogue
+const dialogues = reactive<string[]>(['有没有想起什么呢？']);
+const showDialogueIndex = ref(0);
+function seqDialogue() {
+  showDialogueIndex.value = (showDialogueIndex.value + 1) % dialogues.length;
+}
 </script>

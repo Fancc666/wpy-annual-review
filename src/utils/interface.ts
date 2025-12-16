@@ -16,7 +16,7 @@ export interface UserStats{
   afternoonAccessCount: number;
   nightAccessCount: number;
   totalAccessCount: number;
-  mostActivePeriod: "NONE" | "MORNING" | "NOON" | "AFTERNOON" | "NIGHT";
+  mostActivePeriod: "NONE" | "MORNING" | "AFTERNOON" | "EVENING" | "NIGHT";
   totalPosts: number;
   totalFloors: number;
   feedbackCount: number;

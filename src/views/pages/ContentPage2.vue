@@ -1,14 +1,12 @@
 <template>
   <div class="page" ref="page">
     <div class="group">
-      <p class="box">你最爱在早上浏览微北洋</p>
+      <p class="box">你最爱在<span class="data">{{ activePeriod }}({{ activePeriodAccount }}%)</span>浏览微北洋</p>
       <p class="box"><i>信息的即时传递消灭了晨钟暮鼓，但太阳依旧升起和落下</i></p>
     </div>
     <div class="rd">
-      <div class="dialogue box">
-        一周全早八的朋友们都知道，湖底的的提神效力是咖啡的十倍
-      </div>
-      <img src="@/assets/chr-test.jpg" class="wbn" />
+      <img src="@/assets/chr-test.jpg" class="wbn" @click="seqDialogue()" />
+      <DialogueBox :dialogues="dialogues" :show-index="showDialogueIndex" :direction="1"></DialogueBox>
     </div>
   </div>
 </template>
@@ -31,35 +29,24 @@
 .rd{
   width: 85%;
   display: flex;
-  margin: 0 12px 0 auto;
+  margin: 0 auto 0 12px;
   gap: 10px
 }
 .wbn{
   width: 40%;
 }
-.dialogue{
-  background-color: #f6f6f6;
-  padding: 8px;
-  box-sizing: border-box;
-  /* border: 1px solid black; */
-  border-radius: 10px;
-  height: fit-content;
-}
-.dialogue::after{
-    content: '';
-    width: 0;
-    height: 0;
-    border-left: 12px solid #f6f6f6;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    position: absolute;
-    right: -9px;
-    top: 20%;
-}
 </style>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { reactive, ref, watch } from 'vue';
+import { useUserStore } from '@/stores/user';
+import { storeToRefs } from 'pinia';
+import DialogueBox from '../components/DialogueBox.vue';
+const userStore = useUserStore();
+const user = storeToRefs(userStore).userData.value!;
+const activePeriod = ref<string>("");
+const activePeriodAccount = ref<string>("0");
+
 const page = ref<HTMLElement>();
 const timers: number[] = [];
 function clearAnimate() {
@@ -89,4 +76,34 @@ watch(() => props.activePage, () => {
   console.log("play animation:", props.activePage);
   applyAnimate();
 });
+
+// for dialogue
+const dialogues = reactive<string[]>([]);
+(()=>{
+  if (user.mostActivePeriod === "NONE") return;
+  if (user.mostActivePeriod === "MORNING") {
+    activePeriod.value = "早上";
+    activePeriodAccount.value = ((user.morningAccessCount / user.totalAccessCount) * 100).toFixed(1);
+    dialogues.splice(0, 0, ...["一周全早八的朋友们都知道，湖底的的提神效力是咖啡的十倍！"]);
+  };
+  if (user.mostActivePeriod === "AFTERNOON") {
+    activePeriod.value = "中午";
+    activePeriodAccount.value = ((user.noonAccessCount / user.totalAccessCount) * 100).toFixed(1);
+    dialogues.splice(0, 0, ...["有些帖子真的下饭吗？"]);
+  };
+  if (user.mostActivePeriod === "EVENING") {
+    activePeriod.value = "下午";
+    activePeriodAccount.value = ((user.afternoonAccessCount / user.totalAccessCount) * 100).toFixed(1);
+    dialogues.splice(0, 0, ...["刷湖底不失为一种课后的放松手段~"]);
+  };
+  if (user.mostActivePeriod === "NIGHT") {
+    activePeriod.value = "夜晚";
+    activePeriodAccount.value = ((user.nightAccessCount / user.totalAccessCount) * 100).toFixed(1);
+    dialogues.splice(0, 0, ...["睡不着的话，小微可以陪你哦～"]);
+  };
+})();
+const showDialogueIndex = ref(0);
+function seqDialogue() {
+  showDialogueIndex.value = (showDialogueIndex.value + 1) % dialogues.length;
+}
 </script>
