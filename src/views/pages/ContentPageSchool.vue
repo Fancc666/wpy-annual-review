@@ -1,7 +1,7 @@
 <template>
   <div class="page" ref="page">
     <div class="group">
-      <p class="box">你在校务专区向xx部门反馈了xx个问题，总计建言<span class="data">{{ user.feedbackCount }}</span>次</p>
+      <p class="box">你最爱<span class="data">{{ user.departmentName }}</span>部门并为其反馈了<span class="data">{{ user.departmentCount }}</span>个问题，在校务总计建言<span class="data">{{ user.feedbackCount }}</span>次</p>
       <p class="box"><i>民主是互联网的天然属性</i></p>
     </div>
     <div class="rd">

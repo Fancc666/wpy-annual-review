@@ -4,7 +4,10 @@
       <span>{{ user.nickname }}！</span>
       <span>请查收你的微北洋年度报告</span>
     </h2>
-    <p class="white text">让小微来陪你一起看看吧！</p>
+    <p class="white text">
+      <span>让小微来陪你一起看看吧！</span>
+      <span>微北娘发言：好久不见~想小微了吗？</span>
+    </p>
     <p class="white bottom">向下滑动开启年度报告~</p>
   </div>
 </template>
@@ -33,6 +36,10 @@ h2 span {
 .text {
   position: absolute;
   top: 50%;
+}
+.text span{
+  display: block;
+  padding: 8px 0;
 }
 
 .bottom {

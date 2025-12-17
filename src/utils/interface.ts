@@ -10,13 +10,13 @@ export interface UserStats{
   cutoffDate: string; // timezone
   yearsOfService: number;
   daysOfService: number;
-  tenureLevel: "NEW_COMER" | "CASUAL" | "VETERAN";
+  tenureLevel: "NEW_COMER" | "CASUAL" | "VETERAN" | "LEGEND";
   morningAccessCount: number;
   noonAccessCount: number;
   afternoonAccessCount: number;
   nightAccessCount: number;
   totalAccessCount: number;
-  mostActivePeriod: "NONE" | "MORNING" | "AFTERNOON" | "EVENING" | "NIGHT";
+  mostActivePeriod: "NONE" | "MORNING" | "NOON" | "AFTERNOON" | "NIGHT";
   totalPosts: number;
   totalFloors: number;
   feedbackCount: number;
@@ -37,4 +37,6 @@ export interface UserStats{
   totalFavoritesCount: number;
   userCollectionRank: number;
   collectionRankLevel: "LOW" | "MEDIUM" | "HIGH"; // 可扩展为联合类型，如 "LOW" | "MEDIUM" | "HIGH"
+  departmentName: string; // null
+  departmentCount: number; // -1
 }

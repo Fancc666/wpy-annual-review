@@ -6,8 +6,8 @@
     <ContentPageView :page-id="2" :active-page="activePage"></ContentPageView>
     <ContentPageTime :page-id="3" :active-page="activePage" v-show="user.mostActivePeriod !== 'NONE'"></ContentPageTime>
     <ContentPageContent :page-id="4" :active-page="activePage"></ContentPageContent>
-    <ContentPageSchool :page-id="5" :active-page="activePage"></ContentPageSchool>
-    <ContentPageHot :page-id="6" :active-page="activePage" v-show="p4show"></ContentPageHot>
+    <ContentPageSchool :page-id="5" :active-page="activePage" v-show="schoolshow"></ContentPageSchool>
+    <ContentPageHot :page-id="6" :active-page="activePage" v-show="hotshow"></ContentPageHot>
     <ContentPageInfluence :page-id="7" :active-page="activePage"></ContentPageInfluence>
     <ContentPageSummary :page-id="8" :active-page="activePage"></ContentPageSummary>
     <ContentPageEnd :page-id="9" :active-page="activePage"></ContentPageEnd>
@@ -35,9 +35,15 @@ import { storeToRefs } from 'pinia';
 const userStore = useUserStore();
 const user = storeToRefs(userStore).userData.value!;
 
-const p4show = ref(true);
+// const props = defineProps<{ loaded: boolean }>();
+const hotshow = ref(true);
+const schoolshow = ref(true);
+console.log("page analised");
 if (user.mostLikedPostId === null || user.mostLikedFloorId === null){
-  p4show.value = false;
+  hotshow.value = false;
+}
+if (user.feedbackCount === 0){
+  schoolshow.value = false;
 }
 
 const activePage = ref(-1);

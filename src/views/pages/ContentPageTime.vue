@@ -86,12 +86,12 @@ const dialogues = reactive<string[]>([]);
     activePeriodAccount.value = ((user.morningAccessCount / user.totalAccessCount) * 100).toFixed(1);
     dialogues.splice(0, 0, ...["一周全早八的朋友们都知道，湖底的的提神效力是咖啡的十倍！"]);
   };
-  if (user.mostActivePeriod === "AFTERNOON") {
+  if (user.mostActivePeriod === "NOON") {
     activePeriod.value = "中午";
     activePeriodAccount.value = ((user.noonAccessCount / user.totalAccessCount) * 100).toFixed(1);
     dialogues.splice(0, 0, ...["有些帖子真的下饭吗？"]);
   };
-  if (user.mostActivePeriod === "EVENING") {
+  if (user.mostActivePeriod === "AFTERNOON") {
     activePeriod.value = "下午";
     activePeriodAccount.value = ((user.afternoonAccessCount / user.totalAccessCount) * 100).toFixed(1);
     dialogues.splice(0, 0, ...["刷湖底不失为一种课后的放松手段~"]);

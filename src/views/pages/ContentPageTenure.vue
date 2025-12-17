@@ -1,8 +1,8 @@
 <template>
   <div class="page" ref="page">
     <div class="group">
-      <p class="box">2025年，是你使用微北洋的第<span class="data">{{ user.yearsOfService }}</span>年</p>
-      <p class="box">截止2025年12月20日，你已经与微北洋相伴了<span class="data">{{ user.daysOfService }}</span>个日夜</p>
+      <p class="box">2025年，是你使用微北洋的第<span class="data">{{ yos }}</span>年</p>
+      <p class="box">截止2025年12月20日，你已经与微北洋相伴了<span class="data">{{ dos }}</span>个日夜</p>
       <p class="box"><i>北洋之大，一手掌握</i></p>
     </div>
     <div class="ps">
@@ -62,6 +62,8 @@ import { useUserStore } from '@/stores/user';
 import { storeToRefs } from 'pinia';
 const userStore = useUserStore();
 const user = storeToRefs(userStore).userData.value!;
+const yos = ref(String(user.yearsOfService));
+const dos = ref(String(user.daysOfService));
 import { reactive, ref, watch } from 'vue';
 const page = ref<HTMLElement>();
 const timers: number[] = [];
@@ -96,16 +98,18 @@ watch(() => props.activePage, () => {
 // for dialogue
 const dialogues = reactive<string[]>([]);
 function analyseDialogue() {
-  const time1 = user.registerDate;
-  const time2Standard = "2022-03-01T00:00:00+08:00";
-  const date1 = new Date(time1);
-  const date2 = new Date(time2Standard);
+  // const time1 = user.registerDate;
+  // const time2Standard = "2022-03-01T00:00:00+08:00";
+  // const date1 = new Date(time1);
+  // const date2 = new Date(time2Standard);
 
-  if (date1 < date2) {
+  if (user.tenureLevel === "LEGEND") {
     dialogues.splice(0, 0, ...[
       "哇……看来小微要叫你前辈了(￣▽￣)／",
       "(￣▽￣)／"
     ]);
+    yos.value = "3+";
+    dos.value = "999+";
     return;
   }
   if (user.tenureLevel === "NEW_COMER") {
