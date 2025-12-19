@@ -1,7 +1,8 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
+
 .container {
   max-width: 600px;
   margin: 0 auto;
@@ -10,10 +11,12 @@
   min-height: 100vh;
   box-sizing: border-box;
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
   display: none;
 }
-.page{
+
+.page {
   height: 100vh;
   flex: 0 0 100%;
   padding: 10px;
@@ -22,6 +25,7 @@
   scroll-snap-stop: always;
   overflow: hidden;
 }
+
 .pageContainer {
   width: 100%;
   height: 100vh;
@@ -31,15 +35,18 @@
   max-height: 100vh;
   overflow: scroll;
 }
-.p10{
+
+.p10 {
   padding: 10px;
 }
+
 @keyframes slidein {
   from {
     position: relative;
     top: 10px;
     opacity: 0;
   }
+
   to {
     position: relative;
     top: 0;
@@ -47,28 +54,43 @@
     opacity: 1;
   }
 }
-.box{
+
+.box {
   opacity: 0;
   user-select: none;
   -moz-user-select: none;
 }
-.an-slidein{
+
+.an-slidein {
   animation: slidein .5s linear forwards;
 }
-.white{
+
+.white {
   color: white;
 }
-.group{
+
+.group {
   color: white;
   font-size: 1.2em;
 }
-i{
+
+/* i{
   font-size: .9em;
   text-decoration: underline;
-}
-.data{
+} */
+.data {
   font-size: 1.1em;
   font-weight: bold;
   text-decoration: underline;
   padding: 0 5px;
+}
+
+/* 特殊字体 */
+@font-face {
+  font-family: 'Cubic11';
+  src: url('@/assets/Cubic_11.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  /* 防止空白闪 */
 }
