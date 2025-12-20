@@ -18,7 +18,7 @@
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  background: linear-gradient(135deg, #667eea 0%, #e2c6ff 100%);
+  background: linear-gradient(169.28deg, #728FEF 10.47%, #5F97FF 31.16%, #B7CBFE 60.96%, #F2F4FD 104.23%);
   position: relative;
 }
 .group{
