@@ -15,7 +15,7 @@
     </div>
     <!-- 微北娘 -->
     <div class="wpn-group">
-      <p class="wpn-say">好久不见~想小微了吗？</p>
+      <p class="wpn-say"><span class="box">好久不见~想小微了吗？</span></p>
       <div class="wpn-img"></div>
     </div>
     <!-- 右下角 -->

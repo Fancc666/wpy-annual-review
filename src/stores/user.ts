@@ -19,7 +19,7 @@ export const useUserStore = defineStore(
       if (!token) return false;
       // debuging
       try{
-        const apiResponse = await instance.get(`/api`, {
+        const apiResponse = await instance.get(import.meta.env.VITE_BASE_URL, {
           params: {
             userId: token
           }
