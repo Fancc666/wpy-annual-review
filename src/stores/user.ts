@@ -14,8 +14,9 @@ export const useUserStore = defineStore(
     const getApiData = async (): Promise<boolean> => {
       const u = new URL(window.location.href);
       const params = new URLSearchParams(u.search);
-      console.log(params.get("token"));
-      const token = params.get("token");
+      // 移动给前端传参用uid
+      console.log(params.get("uid"));
+      const token = params.get("uid");
       if (!token) return false;
       // debuging
       try{
