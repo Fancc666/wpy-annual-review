@@ -38,7 +38,7 @@
 }
 
 .text-group {
-  margin-top: 10vh;
+  margin-top: 8vh;
   text-align: right;
   margin-left: 32px;
   z-index: 9;
@@ -96,7 +96,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  aspect-ratio: 402 / 373;
+  aspect-ratio: 402 / 394;
   background-size: cover;
   max-height: 373px;
   z-index: 5;
