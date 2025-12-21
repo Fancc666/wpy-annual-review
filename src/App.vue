@@ -3,7 +3,8 @@
   <link rel="preload" as="image" :href="FirstPageSvg" @load="FirstPageLoad" @error="FirstPageLoad" />
   <link rel="preload" as="font" type="font/woff2" :href="FirstPageWoff" crossorigin="true" @load="FirstPageLoad" @error="FirstPageLoad" />
   <div class="container">
-    <HoldPage v-if="loaded" :key="0"></HoldPage>
+    <!-- 我也不知道为什么这个key老出问题，必须唯一否则无法热重载 -->
+    <HoldPage v-if="loaded"></HoldPage>
     <div class="pageContainer" v-else>
       <div class="page">
         <h2>数据加载中</h2>

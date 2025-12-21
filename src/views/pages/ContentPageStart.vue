@@ -6,8 +6,8 @@
     <div class="cloud"></div>
     <!-- 上方标题 -->
     <div class="title-group">
-      <div>
-        <span class="title-bg">#{{ user.nickname }}#!</span>
+      <div class="center">
+        <span class="title-bg">#<span class="long">{{ user.nickname }}</span>#!</span>
         <span class="title-r">请查收你的</span>
       </div>
       <img src="@/assets/wpy-review.svg" width="243" />
@@ -38,6 +38,10 @@
   padding: 0;
 }
 
+.center {
+  text-align: center;
+}
+
 .title-group {
   margin-top: 12vh;
   display: flex;
@@ -53,10 +57,19 @@
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
-  line-height: 89%;
+  /* line-height: 89%; */
   color: #68ADFF;
   background: #FFFFFF;
   padding: 6px 10px;
+}
+
+.long{
+  display: inline-block;
+  max-width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
 }
 
 .title-r {

@@ -3,7 +3,7 @@
     <!-- 上方文本 -->
     <div class="text-group">
       <span class="text-year box">2025年</span>
-      <span class="text-1 box">你在校务专区向<span class="show">{{ user.departmentName }}</span></span>
+      <span class="text-1 box">你在校务专区向<span class="show nobreak">{{ user.departmentName }}</span></span>
       <span class="text-1 box">反馈了<span class="show">{{ user.departmentCount }}</span>个问题</span>
       <span class="text-1 box">共计建言<span class="show">{{ user.feedbackCount }}</span>次</span>
       <span class="yulu box"><i>民主是互联网的天然属性。</i></span>
@@ -39,7 +39,7 @@
 
 .text-group {
   margin-top: 8vh;
-  text-align: right;
+  /* text-align: right; */
   margin-left: 32px;
   z-index: 9;
 }
@@ -88,6 +88,10 @@
   line-height: 100%;
   color: #FFFFFF;
   margin: 0 4px;
+}
+
+.nobreak {
+  display: inline-block;
 }
 
 .bottom-img {
