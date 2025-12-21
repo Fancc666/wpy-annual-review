@@ -1,4 +1,8 @@
 <template>
+  <!-- FANCC小登倾情制作，制作过程十分痛苦，特此留注释留念 -->
+  <!-- FANCC小登倾情制作，制作过程十分痛苦，特此留注释留念 -->
+  <!-- FANCC小登倾情制作，制作过程十分痛苦，特此留注释留念 -->
+
   <!-- 首屏加载优化，使用link preload -->
   <link rel="preload" as="image" :href="FirstPageSvg" @load="FirstPageLoad" @error="FirstPageLoad" />
   <link rel="preload" as="font" type="font/woff2" :href="FirstPageWoff" crossorigin="true" @load="FirstPageLoad" @error="FirstPageLoad" />

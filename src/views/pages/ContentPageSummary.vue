@@ -17,7 +17,7 @@
       </div>
       <div class="content-left2">
         <span class="text1">你获赞最多的帖子是<span class="show" style="font-size: 36px;">#MP{{ user.mostLikedPostId
-            }}</span></span>
+        }}</span></span>
         <span class="text-postname">《{{ user.mostLikedPostTitle }}》</span>
         <span class="text1">共获赞<span class="show">{{ user.totalLikesReceived }}</span>个</span>
         <span class="wpn-text">快去截图分享吧！</span>
@@ -25,10 +25,11 @@
     </div>
     <!-- 装饰 -->
     <div class="wpn"></div>
-    <!-- <div class="deco1"></div>
+    <div class="deco1"></div>
     <div class="deco2"></div>
     <div class="deco3"></div>
-    <div class="deco4"></div> -->
+    <div class="deco4"></div>
+    <div class="plane"></div>
   </div>
 </template>
 
@@ -144,6 +145,54 @@
   font-feature-settings: 'halt' on, 'kern' off;
   color: #FFFFFF;
   margin-top: 10px;
+}
+
+.deco1 {
+  background: url('@/assets/deco-9-1.png') no-repeat;
+  position: absolute;
+  width: 225px;
+  height: 75px;
+  top: 0;
+  right: 10px;
+}
+
+.deco2 {
+  background: url('@/assets/deco-9-2.png') no-repeat;
+  position: absolute;
+  width: 217px;
+  height: 201px;
+  left: 0;
+  bottom: 0;
+}
+
+.deco3 {
+  background: url('@/assets/deco-9-3.png') no-repeat;
+  position: absolute;
+  width: 117px;
+  height: 139px;
+  left: 0;
+  top: 40%;
+}
+
+.deco4 {
+  background: url('@/assets/deco-9-4.png') no-repeat;
+  position: absolute;
+  width: 149px;
+  height: 177px;
+  right: 0;
+  top: 20%;
+}
+
+.plane {
+  background: url('@/assets/plane-9.svg') no-repeat;
+  position: absolute;
+  height: 100vh;
+  left: 40%;
+  top: 0;
+  transform: translateX(-50%);
+  opacity: .5;
+  aspect-ratio: 267 / 1000;
+  background-size: cover;
 }
 </style>
 
