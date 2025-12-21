@@ -1,17 +1,28 @@
 <template>
   <div class="page" ref="page">
-    <div class="group">
-      <p class="box">今年你一共发了<span class="data">{{ user.totalPosts }}</span>个帖子 <span class="data">{{ user.totalFloors }}</span>条评论</p>
-      <!-- <p class="box">其中有<span class="data">{{ user.feedbackCount }}</span>条校务反馈</p> -->
-      <p class="box"><i>我们需要交流，正如我们需要水</i></p>
+    <!-- 上方文本 -->
+    <div class="text-group">
+      <span class="text-year box">2025年</span>
+      <span class="text-1 box">你一共发布了<span class="show">{{ user.totalPosts }}</span>个帖子</span>
+      <span class="text-1 box">和<span class="show">{{ user.totalFloors }}</span>条评论</span>
+      <span class="yulu box"><i>我们需要交流，正如我们需要水</i></span>
     </div>
-    <div class="ps">
-      <span>点击微北娘试试看</span>
+    <!-- 微北娘 -->
+    <div class="wpn">
+      <div class="box">
+        <div class="wpn-say">
+          <div class="eclipse"></div>
+          <span class="wpn-text" v-html="dialogues[0]"></span>
+        </div>
+      </div>
     </div>
-    <div class="rd">
-      <DialogueBox :dialogues="dialogues" :show-index="showDialogueIndex"></DialogueBox>
-      <img src="@/assets/chr-test.jpg" class="wbn" @click="seqDialogue()" />
-    </div>
+    <!-- 装饰 -->
+    <div class="deco-1"></div>
+    <div :class="[user.postRankLevel === 'HIGH' ? 'deco-2-crown' : 'deco-2']"></div>
+    <div class="deco-3"></div>
+    <div class="deco-4"></div>
+    <div class="deco-5"></div>
+    <div class="plane"></div>
   </div>
 </template>
 
@@ -20,33 +31,174 @@
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  background: linear-gradient(135deg, #667eea 0%, #e2c6ff 100%);
+  background: linear-gradient(188.1deg, #3477C4 10.44%, #4DBCF0 38.65%, #BAE9FF 82.98%);
+  position: relative;
+  padding: 0;
+}
+
+.text-group {
+  margin-top: 10vh;
+  text-align: right;
+  margin-left: 30px;
+  z-index: 9;
+}
+
+.text-group>span {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 5px 0;
+}
+
+.text-year {
+  font-family: 'Source Han Sans CN';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 89%;
+  background: #FFFFFF;
+  color: #68ADFF;
+  padding: 4px;
+}
+
+.text-1 {
+  font-family: 'Source Han Sans CN';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 29px;
+  color: #FFFFFF;
+}
+
+.yulu {
+  font-family: 'JiangChengXieHei';
+  font-style: normal;
+  font-weight: 200;
+  font-size: 18px;
+  line-height: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  padding-top: 12px;
+}
+
+.show {
+  font-family: 'Smiley Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 100%;
+  color: #FFFFFF;
+  margin: 0 4px;
+}
+
+.wpn {
+  background: url('@/assets/wpn-4.png') no-repeat;
+  width: 361px;
+  height: 399px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.wpn-say {
+  position: absolute;
+  top: 80px;
+  right: 40px;
+  width: max-content;
+  z-index: 9;
+}
+
+.wpn-text {
+  display: flex;
+  font-family: 'Cubic11';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 142.49%;
+  color: #FFFFFF;
+  letter-spacing: 0.03em;
+  text-align: right;
   position: relative;
 }
-.group{
-  padding: 70px 0;
-  margin: 0 auto;
+
+/* 渐变背景层 */
+.eclipse {
+  /* content: ''; */
+  position: absolute;
+  inset: -85px -35px;
+  /* 比文字大一圈（可改） */
+  background: linear-gradient(135deg, #5AA1FF 0%, #2F6FE6 100%);
+  opacity: 0.2;
+  /* 透明度 */
+  border-radius: 999px;
+  /* 圆角可选 */
+  pointer-events: none;
+  /* z-index: 8; */
+  -webkit-mask: radial-gradient(ellipse at center, #000 10%, #000 0, transparent 75%);
+  ;
+  mask: radial-gradient(ellipse at center, #000 10%, #000 0, transparent 75%);
 }
-.group > *{
-  margin-bottom: 40px;
+
+.deco-1 {
+  background: url('@/assets/deco-4-1.png') no-repeat;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 402px;
+  height: 464px;
 }
-.rd{
-  width: 85%;
-  display: flex;
-  margin: 0 12px 0 auto;
-  gap: 10px
+
+.deco-2 {
+  background: url('@/assets/deco-4-2.png') no-repeat;
+  position: absolute;
+  left: 0;
+  top: 27vh;
+  width: 249px;
+  height: 502px;
 }
-.wbn{
-  width: 40%;
+
+.deco-2-crown {
+  background: url('@/assets/deco-4-2-crown.png') no-repeat;
+  position: absolute;
+  left: 0;
+  top: 27vh;
+  width: 249px;
+  height: 528px;
 }
-.ps {
-  color: white;
-  font-size: .8em;
-  text-align: right;
-  padding: 5px 0;
+
+.deco-3 {
+  background: url('@/assets/deco-4-3.png') no-repeat;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 162px;
+  height: 182px;
 }
-.ps span {
-  margin-right: 10px;
+
+.deco-4 {
+  background: url('@/assets/deco-4-4.png') no-repeat;
+  position: absolute;
+  right: 75px;
+  top: 30vh;
+  width: 122px;
+  height: 122px;
+}
+
+.deco-5 {
+  background: url('@/assets/deco-4-5.png') no-repeat;
+  position: absolute;
+  right: 0;
+  top: 42vh;
+  width: 170px;
+  height: 249px;
+}
+
+.plane {
+  background: url('@/assets/plane-4.svg') no-repeat;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 337px;
+  height: 919px;
+  opacity: .8;
 }
 </style>
 
@@ -54,7 +206,6 @@
 import { reactive, ref, watch } from 'vue';
 import { useUserStore } from '@/stores/user';
 import { storeToRefs } from 'pinia';
-import DialogueBox from '../components/DialogueBox.vue';
 const userStore = useUserStore();
 const user = storeToRefs(userStore).userData.value!;
 const page = ref<HTMLElement>();
@@ -92,29 +243,26 @@ const dialogues = reactive<string[]>([]);
 function analyseDialogue() {
   if (user.postRankLevel === "LOW") {
     dialogues.splice(0, 0, ...[
-      "原来不止威尼斯湖底有潜水怪，青年湖底也有",
-      "偶尔也出来冒冒泡嘛，小微很期待你的发言哦～"
+      "原来不止威尼斯湖底有潜水怪，<br />青年湖底也有！"
     ]);
     return;
   }
   if (user.postRankLevel === "MEDIUM") {
     dialogues.splice(0, 0, ...[
-      "我们总是在与其他人交流，因为这是我们的天性",
-      "趁想法还年轻，去表达吧！别让它被时间磨损了"
+      "趁想法还年轻，去表达吧！<br />别让它被时间磨损了！"
     ]);
     return;
   }
   if (user.postRankLevel === "HIGH") {
     dialogues.splice(0, 0, ...[
-      "青年湖底的一汪绿水，竟然能养出此等龙王",
-      "没有你的话，小微肯定会无聊呢～"
+      "青年湖底的一汪绿水，<br />竟然能养出此等龙王…"
     ]);
     return;
   }
 }
 analyseDialogue();
-const showDialogueIndex = ref(0);
-function seqDialogue() {
-  showDialogueIndex.value = (showDialogueIndex.value + 1) % dialogues.length;
-}
+// const showDialogueIndex = ref(0);
+// function seqDialogue() {
+//   showDialogueIndex.value = (showDialogueIndex.value + 1) % dialogues.length;
+// }
 </script>
