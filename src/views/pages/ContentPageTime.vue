@@ -2,7 +2,7 @@
   <div :class="['page', user.mostActivePeriod.toLowerCase()]" ref="page">
     <!-- 上方文本 -->
     <div class="text-group">
-      <span class="text-1 box">你最爱在<span class="show">{{ titleText }}</span></span>
+      <span class="text-1 box">你最爱在<span class="show">{{ activePeriod }}</span></span>
       <span class="text-1 box">浏览微北洋</span>
       <span class="yulu box"><i>信息的即时传递消灭了晨钟暮鼓，</i></span>
       <span class="yulu box"><i>但太阳依旧升起和落下。</i></span>
