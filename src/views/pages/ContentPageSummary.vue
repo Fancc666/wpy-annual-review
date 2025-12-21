@@ -1,20 +1,34 @@
 <template>
   <div class="page" ref="page">
-    <h2 class="white">
-      <span>年度汇总</span>
-    </h2>
-    <div class="group">
-      <p class="box" style="font-size: 1.2em;text-align: center;">{{ user.nickname }}的2025微北洋年度报告</p>
-      <p class="box">截止2025/12/20你已经使用了<span class="data">{{ user.daysOfService }}</span>天微北洋</p>
-      <p class="box">总计发了<span class="data">{{ user.totalPosts }}</span>条帖子，<span class="data">{{ user.totalFloors }}</span>个评论</p>
-      <p class="box">其中有<span class="data">{{ user.feedbackCount }}</span>条校务反馈</p>
-      <p class="box">你获赞最多的帖子是<span class="data">【{{ user.mostLikedPostTitle }}】#MP{{ user.mostLikedPostId }}</span></p>
-      <p class="box">所有帖子评论共获赞<span class="data">{{ user.totalLikesReceived }}</span>个</p>
-      <p class="box">小微帮你整理好了哦，快去截图分享吧！</p>
+    <div class="title-group">
+      <span class="title0">来自<span class="show-small">#{{ user.nickname }}#</span>的</span>
+      <img src="@/assets/wpy-review.svg" width="243" />
+      <img src="@/assets/line-2025.svg" width="307" />
     </div>
-    <div class="rd">
-      <img src="@/assets/chr-test.jpg" class="wbn" />
+    <div class="content-group">
+      <div class="content-left">
+        <span class="text1">截止2025/12/20</span>
+        <span class="text1">你已经使用了<span class="show">{{ dos }}</span>天微北洋</span>
+      </div>
+      <div class="content-right">
+        <span class="text1">总计发了<span class="show">{{ user.totalPosts }}</span>条帖子，<span class="show">{{
+          user.totalFloors }}</span>个评论</span>
+        <span class="text1">其中有<span class="show">{{ user.feedbackCount }}</span>条校务反馈</span>
+      </div>
+      <div class="content-left2">
+        <span class="text1">你获赞最多的帖子是<span class="show" style="font-size: 36px;">#MP{{ user.mostLikedPostId
+            }}</span></span>
+        <span class="text-postname">《{{ user.mostLikedPostTitle }}》</span>
+        <span class="text1">共获赞<span class="show">{{ user.totalLikesReceived }}</span>个</span>
+        <span class="wpn-text">快去截图分享吧！</span>
+      </div>
     </div>
+    <!-- 装饰 -->
+    <div class="wpn"></div>
+    <!-- <div class="deco1"></div>
+    <div class="deco2"></div>
+    <div class="deco3"></div>
+    <div class="deco4"></div> -->
   </div>
 </template>
 
@@ -23,35 +37,113 @@
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  background: linear-gradient(135deg, #667eea 0%, #e2c6ff 100%);
+  background: linear-gradient(169.28deg, #5FA4F4 10.47%, #5FA9FF 24.89%, #C5D6F5 104.23%);
   position: relative;
+  padding: 0;
 }
-.group{
-  padding: 15px 0;
+
+.title-group {
+  display: flex;
+  align-items: center;
+  margin-top: 8vh;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9;
+}
+
+.title0 {
+  font-family: 'Source Han Sans CN';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 29px;
+  color: #FFFFFF;
+  padding: 0 10px;
+  word-break: break-all;
+}
+
+.show-small {
+  font-family: 'Smiley Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  color: #FFFFFF;
+  margin: 0 4px;
+}
+
+.show {
+  font-family: 'Smiley Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 100%;
+  color: #FFFFFF;
+  margin: 0 4px;
+}
+
+.content-group {
+  width: 350px;
   margin: 0 auto;
-  font-size: 1em;
+  z-index: 9;
 }
-.group > *{
-  margin-bottom: 20px;
+
+.content-group>div>span {
+  display: block;
 }
-.rd{
-  position: absolute;
-  bottom: 20px;
-  right: 10px;
-  width: fit-content;
-  z-index: 0;
-  opacity: .5;
+
+.text1 {
+  font-family: 'Source Han Sans CN';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 29px;
+  color: #FFFFFF;
 }
-.wbn{
-  /* width: 40%; */
-  width: 200px;
-}
-h2{
+
+.content-right {
+  text-align: right;
   margin-top: 20px;
 }
-h2 span{
-  display: block;
-  text-align: center;
+
+.text-postname {
+  font-family: 'Source Han Sans CN';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 89%;
+  background: #FFFFFF;
+  color: #68ADFF;
+  padding: 4px;
+  margin: 10px 0;
+  line-height: 1.5em;
+  word-break: break-all;
+  width: fit-content;
+}
+
+.content-left2 {
+  margin-top: 20px;
+}
+
+.wpn {
+  background: url('@/assets/wpn-9.png') no-repeat;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 356px;
+  height: 394px;
+}
+
+.wpn-text {
+  font-family: 'Cubic11';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 142.49%;
+  letter-spacing: 0.03em;
+  font-feature-settings: 'halt' on, 'kern' off;
+  color: #FFFFFF;
+  margin-top: 10px;
 }
 </style>
 
@@ -61,6 +153,13 @@ import { useUserStore } from '@/stores/user';
 import { storeToRefs } from 'pinia';
 const userStore = useUserStore();
 const user = storeToRefs(userStore).userData.value!;
+
+const yos = ref(String(user.yearsOfService));
+const dos = ref(String(user.daysOfService));
+if (user.tenureLevel === 'LEGEND') {
+  yos.value = "3+";
+  dos.value = "999+";
+}
 
 const page = ref<HTMLElement>();
 const timers: number[] = [];
