@@ -335,7 +335,7 @@ const titleText = ref("");
   if (user.mostActivePeriod === "MORNING") {
     activePeriod.value = "早上";
     activePeriodAccount.value = ((user.morningAccessCount / user.totalAccessCount) * 100).toFixed(1);
-    dialogues.splice(0, 0, ...["一周全早八的朋友们都知道，<br />湖底的的提神效力是咖啡的十倍！"]);
+    dialogues.splice(0, 0, ...["一周全早八的朋友们都知道，<br />湖底的提神效力是咖啡的十倍！"]);
     titleText.value = "早上6点-12点";
   };
   if (user.mostActivePeriod === "NOON") {

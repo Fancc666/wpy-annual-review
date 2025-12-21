@@ -5,7 +5,7 @@
       <span class="text-year box">2025年</span>
       <span class="text-1 box">你一共发布了<span class="show">{{ user.totalPosts }}</span>个帖子</span>
       <span class="text-1 box">和<span class="show">{{ user.totalFloors }}</span>条评论</span>
-      <span class="yulu box"><i>我们需要交流，正如我们需要水</i></span>
+      <span class="yulu box"><i>我们需要交流，正如我们需要水。</i></span>
     </div>
     <!-- 微北娘 -->
     <div class="wpn">

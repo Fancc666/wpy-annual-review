@@ -11,7 +11,7 @@
       <span class="text-year box">2025年</span>
       <span class="text-1 box">是你使用微北洋的第<span class="show">{{ yos }}</span>年</span>
       <span class="text-1 box">截止2025/12/20，</span>
-      <span class="text-1 box">你已经与微北洋相伴了<span class="show">{{ dos }}</span>个日夜</span>
+      <span class="text-1 box nobreak">你已经与微北洋相伴了<span class="show">{{ dos }}</span>个日夜</span>
       <span class="yulu box"><i>北洋之大，一手掌握。</i></span>
     </div>
     <div class="wpn"></div>
@@ -34,8 +34,10 @@
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  background: linear-gradient(135deg, #3b7beb 0%, #5faaff 22%, #b7d7fe 54%, #f2f5fd 100%);
+  /* background: linear-gradient(135deg, #3b7beb 0%, #5faaff 22%, #b7d7fe 54%, #f2f5fd 100%); */
+  background: linear-gradient(169.28deg, #3B7BEB 10.47%, #5FAAFF 31.16%, #B7D7FE 60.96%, #F2F5FD 104.23%);
   position: relative;
+  padding: 0;
 }
 
 .group {
@@ -87,9 +89,9 @@
 .text-group {
   margin-top: 12vh;
   text-align: left;
-  margin-right: 32px;
+  /* margin-right: 32px; */
   z-index: 9;
-  padding-left: 40px;
+  padding-left: 28px;
 }
 
 .text-1 {
@@ -99,6 +101,10 @@
   font-size: 20px;
   line-height: 29px;
   color: #FFFFFF;
+}
+
+.nobreak {
+  word-break: keep-all;
 }
 
 .yulu {
@@ -144,6 +150,7 @@
   color: #FFFFFF;
   display: flex;
   position: relative;
+  width: max-content;
 }
 
 .wpn-texts {
@@ -155,7 +162,7 @@
   position: absolute;
   right: 10px;
   top: calc(50% + 179px + 12px);
-  width: 320px;
+  width: auto;
 }
 
 /* 渐变背景层 */
@@ -348,22 +355,22 @@ function analyseDialogue() {
   }
   if (user.tenureLevel === "NEW_COMER") {
     dialogues.splice(0, 0, ...[
-      "小微很高兴在今年认识你呢！不知道这里的帖子有没有帮到你呢？",
-      "小微记得，工作室有位哲人说过：“每天湖底看一看，新登更比老登夯”……"
+      "小微很高兴在今年认识你呢！<br />不知道这里的帖子有没有帮到你呢？",
+      "小微记得，工作室有位哲人说过：<br />“每天湖底看一看，新登更比老登夯”……"
     ]);
     return;
   }
   if (user.tenureLevel === "CASUAL") {
     dialogues.splice(0, 0, ...[
-      "小微也是算是看着你长大的吧！你刚来的时候我还给你指过路呢~",
-      "怎么样，现在还能记得和小微刚认识的时候是什么感受吗？"
+      "小微也是算是看着你长大的吧！<br />你刚来的时候我还给你指过路呢~",
+      "怎么样，现在还能记得<br />和小微刚认识的时候是什么感受吗？"
     ]);
     return;
   }
   if (user.tenureLevel === "VETERAN") {
     dialogues.splice(0, 0, ...[
-      "咱俩都认识多长时间了，小微就不和你整这些有的没的了，最近过得怎么样？",
-      "哇，是老资历！还记得那些神贴嘛？忘了的话就去翻翻精华吧~"
+      "咱俩都认识多长时间了，小微就不和你<br />整这些有的没的了，最近过得怎么样？",
+      "哇，是老资历！还记得那些神贴嘛？<br />忘了的话就去翻翻精华吧~"
     ]);
     return;
   }

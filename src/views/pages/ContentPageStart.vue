@@ -11,7 +11,7 @@
         <span class="title-r">请查收你的</span>
       </div>
       <img src="@/assets/wpy-review.svg" width="243" />
-      <p class="subtitle"><i>让微北娘来陪你一起来看看吧！</i></p>
+      <p class="subtitle"><i>让微北娘来陪你一起看看吧！</i></p>
     </div>
     <!-- 微北娘 -->
     <div class="wpn-group">

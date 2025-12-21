@@ -6,7 +6,7 @@
       <span class="text-1 box">你在校务专区向<span class="show">{{ user.departmentName }}</span></span>
       <span class="text-1 box">反馈了<span class="show">{{ user.departmentCount }}</span>个问题</span>
       <span class="text-1 box">共计建言<span class="show">{{ user.feedbackCount }}</span>次</span>
-      <span class="yulu box"><i>民主是互联网的天然属性</i></span>
+      <span class="yulu box"><i>民主是互联网的天然属性。</i></span>
     </div>
     <!-- 底部图片和像素文本 -->
     <div class="bottom-img">
@@ -38,7 +38,7 @@
 }
 
 .text-group {
-  margin-top: 12vh;
+  margin-top: 10vh;
   text-align: right;
   margin-left: 32px;
   z-index: 9;
@@ -105,7 +105,7 @@
 .wpn-say {
   position: absolute;
   right: 25px;
-  top: -60px;
+  top: -42px;
   width: max-content;
 }
 
