@@ -65,7 +65,7 @@
 
 .long{
   display: inline-block;
-  max-width: 50%;
+  max-width: 54%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

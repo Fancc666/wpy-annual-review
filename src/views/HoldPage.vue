@@ -8,9 +8,10 @@
     <ContentPageContent :page-id="4" :active-page="activePage"></ContentPageContent>
     <ContentPageSchool :page-id="5" :active-page="activePage" v-show="schoolshow"></ContentPageSchool>
     <ContentPageHot :page-id="6" :active-page="activePage" v-show="hotshow"></ContentPageHot>
-    <ContentPageInfluence :page-id="7" :active-page="activePage"></ContentPageInfluence>
-    <ContentPageSummary :page-id="8" :active-page="activePage"></ContentPageSummary>
-    <ContentPageEnd :page-id="9" :active-page="activePage"></ContentPageEnd>
+    <ContentPageHotFloor :page-id="7" :active-page="activePage" v-show="hotshow"></ContentPageHotFloor>
+    <ContentPageInfluence :page-id="8" :active-page="activePage"></ContentPageInfluence>
+    <ContentPageSummary :page-id="9" :active-page="activePage"></ContentPageSummary>
+    <ContentPageEnd :page-id="10" :active-page="activePage"></ContentPageEnd>
   </div>
 </template>
 
@@ -25,6 +26,7 @@ import ContentPageView from './pages/ContentPageView.vue';
 import ContentPageTime from './pages/ContentPageTime.vue';
 import ContentPageContent from './pages/ContentPageContent.vue';
 import ContentPageHot from './pages/ContentPageHot.vue';
+import ContentPageHotFloor from './pages/ContentPageHotFloor.vue';
 import ContentPageInfluence from './pages/ContentPageInfluence.vue';
 import ContentPageSchool from './pages/ContentPageSchool.vue';
 import ContentPageSummary from './pages/ContentPageSummary.vue';
