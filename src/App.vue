@@ -6,6 +6,7 @@
   <!-- 首屏加载优化，使用link preload -->
   <link rel="preload" as="image" :href="FirstPageSvg" @load="FirstPageLoad" @error="FirstPageLoad" />
   <link rel="preload" as="font" type="font/woff2" :href="FirstPageWoff" crossorigin="true" @load="FirstPageLoad" @error="FirstPageLoad" />
+  <link rel="preload" as="font" type="font/woff2" :href="FirstPageWoff2" crossorigin="true" @load="FirstPageLoad" @error="FirstPageLoad" />
   <div class="container">
     <!-- 我也不知道为什么这个key老出问题，必须唯一否则无法热重载 -->
     <HoldPage v-if="loaded" :key="0"></HoldPage>
@@ -24,6 +25,7 @@ import { useUserStore } from './stores/user';
 import HoldPage from './views/HoldPage.vue';
 const FirstPageSvg = new URL('@/assets/wpy-review.svg', import.meta.url).href;
 const FirstPageWoff = new URL('@/assets/Cubic_11.woff2', import.meta.url).href;
+const FirstPageWoff2 = new URL('@/assets/SmileySans-Oblique.ttf.woff2', import.meta.url).href;
 const loaded = ref(false);
 const myUser = useUserStore();
 const preloaded = ref(false);
