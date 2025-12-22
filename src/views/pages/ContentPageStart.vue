@@ -7,7 +7,8 @@
     <!-- 上方标题 -->
     <div class="title-group">
       <div class="center">
-        <span class="title-bg">#<span class="long">{{ user.nickname }}</span>#!</span>
+        <!-- <span class="title-bg">#<span class="long">{{ user.nickname }}</span>#!</span> -->
+        <span class="title-bg">#{{ user.nickname }}#!</span>
         <span class="title-r">请查收你的</span>
       </div>
       <img src="@/assets/wpy-review.svg" width="243" />
@@ -40,6 +41,7 @@
 
 .center {
   text-align: center;
+  padding: 0 5px;
 }
 
 .title-group {
@@ -67,9 +69,9 @@
   display: inline-block;
   max-width: 54%;
   white-space: nowrap;
-  overflow: hidden;
+  overflow: clip;
   text-overflow: ellipsis;
-  vertical-align: top;
+  /* vertical-align: top; */
 }
 
 .title-r {
@@ -80,6 +82,7 @@
   line-height: 35px;
   color: #FFFFFF;
   margin-left: 8px;
+  display: inline-block;
 }
 
 .subtitle {

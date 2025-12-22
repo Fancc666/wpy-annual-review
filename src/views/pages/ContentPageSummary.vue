@@ -16,9 +16,9 @@
         <span class="text1">其中有<span class="show">{{ user.feedbackCount }}</span>条校务反馈</span>
       </div>
       <div class="content-left2">
-        <span class="text1">你获赞最多的帖子是<span class="show" style="font-size: 36px;">#MP{{ user.mostLikedPostId
+        <span class="text1" v-show="user.mostLikedPostId !== null">你获赞最多的帖子是<span class="show" style="font-size: 36px;">#MP{{ user.mostLikedPostId
         }}</span></span>
-        <span class="text-postname">《{{ user.mostLikedPostTitle }}》</span>
+        <span class="text-postname" v-show="user.mostLikedPostId !== null">《{{ user.mostLikedPostTitle }}》</span>
         <span class="text1">共获赞<span class="show">{{ user.totalLikesReceived }}</span>个</span>
         <span class="wpn-text">快去截图分享吧！</span>
       </div>
